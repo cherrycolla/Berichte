@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#010202">
+<title>Berichte</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Kaushan+Script&family=Sora:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="kopf" id="kopf"></header>
+  <p class="hinweis" id="meldung" role="status"></p>
+
+  <div class="raster">
+    <aside class="liste-box" aria-label="Tage">
+      <div class="neu">
+        <label><span class="label">Tag</span><input type="date" id="datum"></label>
+        <button class="btn prim" type="button" id="anlegen">Anlegen</button>
+      </div>
+      <div class="liste-kopf"><span class="label">Tagesberichte</span><span class="label" id="anzahl"></span></div>
+      <div class="liste" id="liste"></div>
+    </aside>
+
+    <main class="editor" id="editor">
+      <div class="leer" id="leer">Wähle links einen Tag aus oder lege einen neuen an.</div>
+      <form class="bogen" id="bogen" hidden>
+        <div class="meta">
+          <span class="kw" id="m-kw"></span>
+          <span id="m-bereich"></span>
+          <span id="m-aw"></span>
+          <span class="stand" id="stand" aria-live="polite"></span>
+        </div>
+
+        <div class="block">
+          <span class="label" id="art-label">Tagesart</span>
+          <div class="status" role="group" aria-labelledby="art-label">
+            <button type="button" data-a="betrieb" aria-pressed="false">Betrieb</button>
+            <button type="button" data-a="schule" aria-pressed="false">Berufsschule</button>
+            <button type="button" data-a="frei" aria-pressed="false">Frei</button>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-kopf">
+            <label class="label" for="f-betrieb">Betriebliche Tätigkeiten</label>
+            <span class="std-wrap"><input class="std" id="f-sb" data-f="stunden_betrieb" type="number" inputmode="decimal" min="0" max="24" step="0.5" aria-label="Stunden im Betrieb"><span class="label">Std.</span></span>
+          </div>
+          <textarea class="lined" id="f-betrieb" data-f="betrieb" placeholder="z. B. Patchkabel für das Testnetz beschriftet, Switchports den VLANs zugewiesen, Ticket zur Druckerfreigabe bearbeitet"></textarea>
+        </div>
+
+        <div class="block">
+          <div class="block-kopf">
+            <label class="label" for="f-schule">Berufsschule</label>
+            <span class="std-wrap"><input class="std" id="f-ss" data-f="stunden_schule" type="number" inputmode="decimal" min="0" max="24" step="0.5" aria-label="Stunden in der Berufsschule"><span class="label">Std.</span></span>
+          </div>
+          <textarea class="lined kurz" id="f-schule" data-f="schule" placeholder="z. B. IPv4-Adressierung, Subnetzmasken, Umrechnung Binär und Dezimal"></textarea>
+        </div>
+
+        <div class="block">
+          <label class="label" for="f-unterweisung">Unterweisungen und Schulungen</label>
+          <textarea class="lined kurz" id="f-unterweisung" data-f="unterweisung" placeholder="z. B. Arbeitssicherheit, Datenschutz, Brandschutz"></textarea>
+        </div>
+
+        <div class="block">
+          <span class="label" id="status-label">Stand</span>
+          <div class="status" role="group" aria-labelledby="status-label">
+            <button type="button" data-s="entwurf" aria-pressed="false">Entwurf</button>
+            <button type="button" data-s="fertig" aria-pressed="false">Fertig</button>
+            <button type="button" data-s="unterschrieben" aria-pressed="false" disabled title="Nur der Ausbilder unterschreibt">Unterschrieben</button>
+          </div>
+          <p class="signatur" id="signatur"></p>
+        </div>
+
+        <div class="aktionen">
+          <div><button class="btn" type="button" id="kopieren">Als Text kopieren</button></div>
+          <div><button class="btn gefahr" type="button" id="loeschen">Tag löschen</button></div>
+        </div>
+      </form>
+    </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script src="berichte.js"></script>
+</body>
+</html>

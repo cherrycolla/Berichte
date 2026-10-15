@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#010202">
+<title>Berichte</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Kaushan+Script&family=Sora:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="kopf" id="kopf"></header>
+  <p class="hinweis" id="meldung" role="status"></p>
+
+  <section class="bogen" aria-labelledby="neu-titel">
+    <h2 class="titel" id="neu-titel">Zugang anlegen</h2>
+    <form class="formraster" id="neu" autocomplete="off">
+      <label class="block"><span class="label">Name</span><input class="line-in" id="n-name" required></label>
+      <label class="block"><span class="label">E-Mail</span><input class="line-in" id="n-email" type="email" inputmode="email" autocapitalize="none" required></label>
+      <label class="block"><span class="label">Passwort (mind. 8 Zeichen)</span><input class="line-in" id="n-pass" type="text" autocapitalize="none" autocomplete="off" minlength="8" required></label>
+      <label class="block">
+        <span class="label">Rolle</span>
+        <select class="line-in" id="n-rolle">
+          <option value="azubi">Azubi</option>
+          <option value="ausbilder">Ausbilder</option>
+          <option value="admin">Administrator</option>
+        </select>
+      </label>
+      <label class="block" id="n-ausbilder-box"><span class="label">Ausbilder</span><select class="line-in" id="n-ausbilder"></select></label>
+      <label class="block" id="n-beginn-box"><span class="label">Ausbildungsbeginn</span><input class="line-in" id="n-beginn" type="date"></label>
+      <div class="block ende"><button class="btn prim" type="submit" id="n-senden">Zugang anlegen</button></div>
+    </form>
+  </section>
+
+  <section aria-labelledby="liste-titel">
+    <h2 class="titel" id="liste-titel">Benutzer</h2>
+    <div class="nutzerliste" id="nutzer"></div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
